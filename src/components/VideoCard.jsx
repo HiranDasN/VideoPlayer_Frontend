@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import { addToHistory, deleteAVideos} from '../Services/allAPI';
 
-function VideoCard({displayVideo,setDeleteVideoStatus}) {
+function VideoCard({displayVideo,setDeleteVideoStatus,ispresent}) {
 
   const[show,setShow] = useState(false)
   const handleClose =()=> setShow(false)
@@ -39,7 +39,11 @@ const cardDrag = (e,id)=>{
         <Card.Body>
           <Card.Title className='d-flex justify-content-between align-items-center'>
             <h6>{displayVideo.caption}</h6>
-            <button onClick={()=>removeVideo(displayVideo?.id)} className='btn btn-danger'><i class="fa-solid fa-trash-can"></i></button>
+            
+            {!ispresent?
+              <button onClick={()=>removeVideo(displayVideo?.id)} className='btn btn-danger'><i class="fa-solid fa-trash-can"></i></button>
+            :
+            <button className='btn btn-warning'><i class="fa-solid fa-trash-can"></i></button>}
           </Card.Title>
         </Card.Body>
       </Card>

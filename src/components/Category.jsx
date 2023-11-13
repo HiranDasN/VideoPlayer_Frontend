@@ -81,6 +81,7 @@ const videoDrop = async(e,categoryId)=>{
 
  await updateCategory(categoryId,selectedcategory)
  allCategory()
+
 }
 
 
@@ -105,7 +106,7 @@ const videoDrop = async(e,categoryId)=>{
             <Col>
            {
             item?.allVideos?.length>0?
-            item.allVideos.map((card)=>(<VideoCard displayVideo={card}/>)):
+            item.allVideos.map((card)=>(<VideoCard displayVideo={card} ispresent="true"/>)):
             <p>Nothing to display</p>
            }
             </Col>
