@@ -53,6 +53,19 @@ const allCategory = async()=>{
   allCategory()
 }
 
+const deleteVideoFromCategory = async (categoryId, videoId) => {
+  // Find the category
+  const selectedCategory = category1.find(item => item.id === categoryId);
+
+  // Remove the video from the category
+  selectedCategory.allVideos = selectedCategory.allVideos.filter(video => video.id !== videoId);
+
+  // Update the category
+  await updateCategory(categoryId, selectedCategory);
+
+  // Refresh the categories
+  allCategory();
+};
 
 
 //function to delete category
@@ -106,7 +119,7 @@ const videoDrop = async(e,categoryId)=>{
             <Col>
            {
             item?.allVideos?.length>0?
-            item.allVideos.map((card)=>(<VideoCard displayVideo={card} ispresent="true"/>)):
+            item.allVideos.map((card)=>(<VideoCard displayVideo={card} ispresent="true" deleteVideoFromCategory={(videoId) => deleteVideoFromCategory(item.id, videoId)}/>)):
             <p>Nothing to display</p>
            }
             </Col>
